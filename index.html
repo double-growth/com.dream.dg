@@ -32,7 +32,6 @@
       --font-numeric: "Chakra Petch", monospace;
       --bottom-nav-height: 64px;
       --header-height: 60px;
-      --max-content-width: 480px;
       --radius-lg: 20px;
       --radius-md: 14px;
       --radius-sm: 8px;
@@ -64,20 +63,56 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
+      background: #050a17;
     }
 
+    /* FULL-SCREEN MOBILE STRETCH (NO UGLY SIDEBARS) */
     #app-root {
-      width: 100%;
-      max-width: var(--max-content-width);
+      width: 100vw;
+      max-width: 100%;
       min-height: 100vh;
       background-color: #071126;
       position: relative;
       display: flex;
       flex-direction: column;
-      padding-bottom: calc(var(--bottom-nav-height) + 16px);
-      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+      padding-bottom: calc(var(--bottom-nav-height) + 20px);
+    }
+
+    /* ONLY DESKTOP HAS CENTERED VIEW */
+    @media (min-width: 640px) {
+      body { background: var(--bg-gradient); background-attachment: fixed; }
+      #app-root {
+        max-width: 480px;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+        border-left: 1px solid var(--border-blue);
+        border-right: 1px solid var(--border-blue);
+      }
+    }
+
+    /* ==============================================================
+       TOP SCREEN 4-DIGIT LIVE OTP NOTIFICATION BANNER
+       ============================================================== */
+    #top-otp-notification-banner {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 440px;
+      background: rgba(12, 25, 56, 0.98);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--accent-cyan);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95);
+      border-radius: 14px;
+      padding: 12px 14px;
+      z-index: 9999999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: top 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #top-otp-notification-banner.show {
+      top: 15px;
     }
 
     /* TOP HEADER */
@@ -372,10 +407,7 @@
       font-weight: 800;
     }
 
-    .quick-chips-row {
-      display: flex;
-      gap: 4px;
-    }
+    .quick-chips-row { display: flex; gap: 4px; }
     .btn-quick-add {
       height: 34px;
       padding: 0 8px;
@@ -444,11 +476,7 @@
     }
 
     /* JODI 100 GRID */
-    .jodi-100-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 4px;
-    }
+    .jodi-100-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
     .jodi-cell {
       aspect-ratio: 1/1;
       background: #091228;
@@ -820,7 +848,7 @@
     }
 
     /* ==============================================================
-       NEW FINTECH DEPOSIT MODAL WITH AMOUNT CHIPS & VERIFICATION
+       FINTECH DEPOSIT MODAL WITH AMOUNT CHIPS & VERIFICATION
        ============================================================== */
     .quick-amt-chips-tray {
       display: grid;
@@ -890,7 +918,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: var(--max-content-width);
+      max-width: 480px;
       height: var(--bottom-nav-height);
       background: rgba(12, 25, 56, 0.96);
       backdrop-filter: blur(14px);
@@ -1088,6 +1116,19 @@
 
   <div id="toast-container"></div>
 
+  <!-- TOP SCREEN DROP-DOWN 4-DIGIT OTP BANNER -->
+  <div id="top-otp-notification-banner">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:36px; height:36px; border-radius:8px; background:#070e22; border:1px solid var(--accent-cyan); display:flex; align-items:center; justify-content:center; font-size:18px;">🔔</div>
+      <div>
+        <h4 style="font-size:12.5px; font-weight:900; color:#fff;">DREAM DIGIT OTP</h4>
+        <p style="font-size:11px; color:#cbd5e1; margin-top:2px;">Your 4-Digit Code: <strong id="banner-otp-digit" style="color:var(--neon-green); font-size:15px; font-family:var(--font-numeric); letter-spacing:2px;">----</strong></p>
+      </div>
+    </div>
+    <button id="btn-copy-banner-otp" style="background:var(--primary-blue); color:#fff; border:none; padding:6px 12px; border-radius:6px; font-weight:800; font-size:11px; cursor:pointer;">COPY</button>
+  </div>
+
+  <!-- MAIN WRAPPER (100% MOBILE FULL-WIDTH) -->
   <div id="app-root">
 
     <!-- TOP HEADER -->
@@ -1124,7 +1165,33 @@
         </div>
       </div>
 
+      <!-- BAZAARS CARDS GRID -->
       <div class="bazaars-grid" id="bazaars-list-container"></div>
+
+      <!-- FOOTER CARDS TO FILL EMPTY GAP PERFECTLY -->
+      <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+        
+        <!-- 100% Trusted Matka Badge -->
+        <div style="background: linear-gradient(135deg, #0c1938, #112555); border: 1px solid var(--border-blue); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 28px;">🛡️</span>
+          <div>
+            <h4 style="font-size: 13px; color: #fff; font-weight: 800;">100% Trusted &amp; Secure Matka</h4>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Instant Auto-Withdrawal • 90x Highest Jodi Payout</p>
+          </div>
+        </div>
+
+        <!-- 24/7 Live Support Bar -->
+        <div style="background: #0c1938; border: 1px solid var(--border-blue); border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 10px; color: var(--accent-cyan); font-weight: 800;">24/7 LIVE SUPPORT</span>
+            <h5 style="color: #fff; font-size: 12.5px; margin-top: 2px;">Need Help with Deposit or Game?</h5>
+          </div>
+          <button onclick="document.getElementById('btn-open-support').click()" style="background: var(--primary-blue); color: #fff; border: none; padding: 7px 14px; border-radius: 6px; font-weight: 800; font-size: 11px; cursor: pointer;">
+            CHAT NOW ➔
+          </button>
+        </div>
+
+      </div>
     </main>
 
     <!-- TAB 2: MY BETS -->
@@ -1409,7 +1476,7 @@
   </div>
 
   <!-- ==============================================================
-       MODAL 5: INSTANT UPI DEPOSIT (PHONEPE, GPAY, PAYTM DIRECT & 10s VERIFICATION)
+       MODAL 5: INSTANT UPI DEPOSIT WITH DIRECT APP LAUNCH & 10s VERIFICATION
        ============================================================== -->
   <div class="modal-overlay" id="deposit-modal">
     <div class="modal-window">
@@ -1418,8 +1485,8 @@
         <button class="btn-close" id="btn-close-deposit">&times;</button>
       </div>
 
-      <!-- AMOUNT CHIPS -->
-      <label style="font-size:11px; font-weight:800; color:var(--text-muted); display:block; margin-bottom:6px;">SELECT OR ENTER AMOUNT (₹)</label>
+      <!-- QUICK AMOUNT CHIPS -->
+      <label style="font-size:11px; font-weight:800; color:var(--text-muted); display:block; margin-bottom:6px;">SELECT AMOUNT (₹)</label>
       <div class="quick-amt-chips-tray">
         <button class="btn-amt-chip" data-amt="200">₹200</button>
         <button class="btn-amt-chip active" data-amt="500">₹500</button>
@@ -1436,7 +1503,7 @@
         <p style="font-size:9.5px; color:#000; font-weight:900; margin-top:2px;">SCAN WITH ANY UPI APP</p>
       </div>
 
-      <!-- DIRECT UPI APPS (NO ERR_UNKNOWN_URL_SCHEME) -->
+      <!-- DIRECT UPI APPS TRAY -->
       <div class="upi-apps-tray">
         <div class="btn-upi-app" id="pay-phonepe">
           <span style="font-size:22px;">🟣</span>
@@ -1456,7 +1523,7 @@
         </div>
       </div>
 
-      <!-- 10-SECOND LIVE BANKING VERIFICATION COUNTDOWN BOX -->
+      <!-- 10-SECOND LIVE BANKING VERIFICATION COUNTDOWN -->
       <div class="verify-timer-box" id="verify-timer-box">
         <span style="font-size:11px; color:var(--accent-gold); font-weight:800;">BANKING NETWORK VERIFICATION</span>
         <h3 id="verify-countdown-text">10s</h3>
@@ -1518,7 +1585,7 @@
     </div>
   </div>
 
-  <!-- MODAL 7: EXIT CONFIRMATION DIALOG -->
+  <!-- MODAL 7: ANIMATED EXIT CONFIRMATION DIALOG -->
   <div class="modal-overlay" id="exit-confirm-modal">
     <div class="exit-modal-window">
       <div class="exit-content-wrap">
@@ -1581,10 +1648,45 @@
       currentArenaMode: "JODI",
       stagedBets: new Map(),
       bazaarsList: [],
-      adminUpi: "dreamdigit@upi", // Synchronized with Admin Panel Firebase
+      adminUpi: "dreamdigit@upi",
       customQrUrl: "",
       officialResultsUrl: "https://www.google.com/search?q=satta+matka+live+results"
     };
+
+    // ==============================================================
+    // 4-DIGIT TOP SCREEN OTP NOTIFICATION DROP-DOWN ENGINE
+    // ==============================================================
+    function showTopOtpBanner(otpCode) {
+      const banner = document.getElementById("top-otp-notification-banner");
+      document.getElementById("banner-otp-digit").innerText = otpCode;
+      banner.classList.add("show");
+
+      // Auto hide after 12 seconds
+      setTimeout(() => {
+        banner.classList.remove("show");
+      }, 12000);
+    }
+
+    document.getElementById("btn-copy-banner-otp").onclick = () => {
+      const code = document.getElementById("banner-otp-digit").innerText;
+      navigator.clipboard.writeText(code);
+      showToast(`Copied OTP ${code}!`);
+      document.getElementById("top-otp-notification-banner").classList.remove("show");
+    };
+
+    // Listen to OTPs for the logged in user phone or incoming OTP
+    function listenToUserOtp(phone) {
+      if (!phone) return;
+      const cleanPhone = phone.replace(/\D/g, "").slice(-10);
+      onValue(ref(db, `otps/${cleanPhone}`), (snap) => {
+        if (snap.exists()) {
+          const data = snap.val();
+          if (data.otp && data.otp.length === 4) {
+            showTopOtpBanner(data.otp);
+          }
+        }
+      });
+    }
 
     // ==============================================================
     // STEP-BY-STEP BACK NAVIGATION SYSTEM
@@ -1790,6 +1892,7 @@
       localStorage.setItem("dd_uid", uid);
       localStorage.setItem("dd_phone", phone);
       attachUserListener(uid);
+      listenToUserOtp(phone);
     };
 
     const storedUid = localStorage.getItem("dd_uid");
@@ -1798,6 +1901,7 @@
       AppState.uid = storedUid;
       AppState.phone = storedPhone;
       attachUserListener(storedUid);
+      listenToUserOtp(storedPhone);
     } else {
       renderUserUI();
     }
@@ -1843,7 +1947,6 @@
     // ==============================================================
     // INSTANT DEPOSIT WITH AMOUNT CHIPS, NATIVE UPI & 10s VERIFICATION
     // ==============================================================
-    // Quick Amount Chips Handlers
     document.querySelectorAll(".btn-amt-chip").forEach(chip => {
       chip.onclick = () => {
         document.querySelectorAll(".btn-amt-chip").forEach(c => c.classList.remove("active"));
@@ -1881,13 +1984,13 @@
 
       const rawUpiUri = `upi://pay?pa=${AppState.adminUpi}&pn=${encodeURIComponent("DreamDigit")}&am=${amt}&cu=INR&tn=${encodeURIComponent("DreamDigit Recharge")}`;
 
-      // 1. If Sketchware Android Interface is ready
+      // 1. Native Java Interface Bridge
       if (window.Android && window.Android.openUpi) {
         window.Android.openUpi(rawUpiUri, pkg);
         return;
       }
 
-      // 2. Direct Window Location (Handled by shouldOverrideUrlLoading in Sketchware)
+      // 2. Direct Window Location
       window.location.href = rawUpiUri;
     }
 
@@ -1911,7 +2014,7 @@
         return;
       }
 
-      // Start 10-Second Live Banking Verification Simulation
+      // Start 10-Second Live Banking Verification
       isVerifying = true;
       const verifyBox = document.getElementById("verify-timer-box");
       const countdownText = document.getElementById("verify-countdown-text");
@@ -1935,7 +2038,6 @@
           submitBtn.style.opacity = "1";
           isVerifying = false;
 
-          // Submit to Firebase Database
           try {
             await push(ref(db, "transactions"), {
               userId: AppState.uid,
