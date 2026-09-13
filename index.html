@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#050a17" />
+  <title>DREAM DIGIT — Satta Matka & Casino</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-primary: #050a17;
+      --bg-gradient: radial-gradient(circle at 50% 12%, #132a5e 0%, #0c1c42 40%, #050a17 90%);
+      --card-bg: #0c1938;
+      --card-inner: #070e22;
+      --border-blue: rgba(37, 99, 235, 0.35);
+      --border-subtle: #1e356a;
+      --primary-blue: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-glow: rgba(37, 99, 235, 0.5);
+      --accent-cyan: #38bdf8;
+      --accent-gold: #ffb703;
+      --neon-green: #10b981;
+      --danger-coral: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-numeric: "Chakra Petch", monospace;
+      --bottom-nav-height: 64px;
+      --header-height: 60px;
+      --max-content-width: 480px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    input, textarea, select {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: "Inter", sans-serif;
+      font-size: 13.5px;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+    }
+
+    #app-root {
+      width: 100%;
+      max-width: var(--max-content-width);
+      min-height: 100vh;
+      background-color: #071126;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: calc(var(--bottom-nav-height) + 16px);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+    }
+
+    /* TOP HEADER */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      background: rgba(12, 25, 56, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #091228;
+      border: 1.5px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+      padding: 2px;
+    }
+
+    .brand-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-info h1 {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      color: #fff;
+    }
+
+    .brand-info span {
+      font-size: 9.5px;
+      color: var(--accent-cyan);
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wallet-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--border-blue);
+      border-radius: 20px;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+
+    .wallet-pill .balance-amount {
+      font-family: var(--font-numeric);
+      font-weight: 800;
+      color: var(--accent-cyan);
+      font-size: 13.5px;
+    }
+
+    .btn-deposit-top {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    /* TABS CONTENT */
+    .tab-content { display: none; flex: 1; padding: 14px; }
+    .tab-content.active { display: block; }
+
+    /* LOBBY BAR */
+    .lobby-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .live-counters-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-live {
+      background: #0c1938;
+      border: 1px solid var(--border-subtle);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pill-live.online { color: #6ee7b7; border-color: rgba(16, 185, 129, 0.3); }
+    .pill-live.users { color: var(--accent-cyan); border-color: var(--border-blue); }
+
+    .btn-header-action {
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      padding: 5px 11px;
+      border-radius: 8px;
+      color: var(--accent-cyan);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* BAZAARS GRID */
+    .bazaars-grid { display: flex; flex-direction: column; gap: 10px; }
+    .bazaar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .bazaar-card.is-closed {
+      border-color: rgba(244, 63, 94, 0.35);
+      background: #0a1329;
+    }
+    .bazaar-card-main { display: flex; justify-content: space-between; align-items: center; }
+    .bazaar-meta h3 { font-size: 14.5px; font-weight: 800; color: #fff; }
+    .bazaar-time-badge { font-size: 11px; color: var(--text-muted); font-family: var(--font-numeric); margin-top: 3px; }
+    
+    .bazaar-countdown { 
+      font-size: 11px; 
+      font-weight: 800; 
+      font-family: var(--font-numeric); 
+      margin-top: 5px; 
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .bazaar-countdown.open-count { color: var(--neon-green); }
+    .bazaar-countdown.closed-count { color: #fb7185; }
+
+    .status-badge { padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; display: inline-block; }
+    .status-badge.open { background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid var(--neon-green); }
+    .status-badge.closed { background: rgba(244, 63, 94, 0.15); color: var(--danger-coral); border: 1px solid var(--danger-coral); }
+
+    .btn-play-bazaar {
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: var(--primary-blue);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .btn-play-bazaar.btn-locked {
+      background: #192542;
+      color: #94a3b8;
+      box-shadow: none;
+      border: 1px solid #293b67;
+    }
+
+    /* FULLSCREEN BETTING ARENA */
+    #jodi-arena-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #050a17;
+      display: none;
+      flex-direction: column;
+    }
+    #jodi-arena-modal.open { display: flex; }
+
+    .arena-topbar {
+      height: 56px;
+      background: #0c1938;
+      border-bottom: 1px solid var(--border-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+    }
+    .btn-close-arena {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 26px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* MODE TABS */
+    .arena-mode-switch {
+      display: flex;
+      background: #070e22;
+      border-bottom: 1px solid var(--border-blue);
+      padding: 6px 12px;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .btn-mode-tab {
+      flex: 1;
+      height: 34px;
+      background: #0c1938;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .btn-mode-tab.active {
+      background: var(--primary-blue);
+      color: #fff;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* STAKE AMOUNT INPUT BAR */
+    .stake-input-tray {
+      background: #0a142c;
+      border-bottom: 1px solid var(--border-blue);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .stake-field-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #070e22;
+      border: 1.5px solid var(--primary-blue);
+      border-radius: var(--radius-sm);
+      padding: 0 10px;
+      height: 38px;
+    }
+    .stake-field-wrap span {
+      font-weight: 800;
+      color: var(--accent-cyan);
+      font-size: 14px;
+      margin-right: 4px;
+    }
+    .input-stake-val {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: var(--font-numeric);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .quick-chips-row {
+      display: flex;
+      gap: 4px;
+    }
+    .btn-quick-add {
+      height: 34px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: #102148;
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-cyan);
+      font-size: 11px;
+      font-weight: 800;
+      font-family: var(--font-numeric);
+      cursor: pointer;
+    }
+
+    /* VIEWPORT FOR JODI / HARUF / CROSSING */
+    .arena-viewport {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      position: relative;
+    }
+
+    /* ARENA LOCK OVERLAY WITH UNLOCK COUNTDOWN */
+    .arena-lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 10, 23, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .arena-lock-overlay.active { display: flex; }
+    .arena-lock-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(244, 63, 94, 0.15);
+      border: 2px solid var(--danger-coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 12px;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+    }
+    .arena-lock-title { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .arena-lock-sub { font-size: 12px; color: var(--text-muted); max-width: 260px; }
+    .arena-lock-timer-box {
+      margin-top: 14px;
+      background: #0c1938;
+      border: 1px solid var(--danger-coral);
+      padding: 8px 20px;
+      border-radius: 12px;
+    }
+    .arena-lock-timer-box span { font-size: 10.5px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
+    .arena-lock-countdown {
+      font-family: var(--font-numeric);
+      font-size: 24px;
+      font-weight: 900;
+      color: #fda4af;
+      letter-spacing: 1px;
+    }
+
+    /* JODI 100 GRID */
+    .jodi-100-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 4px;
+    }
+    .jodi-cell {
+      aspect-ratio: 1/1;
+      background: #091228;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .jodi-cell .cell-number {
+      font-family: var(--font-numeric);
+      font-size: 11px;
+      font-weight: 800;
+      color: #cbd5e1;
+    }
+    .jodi-cell.has-stake {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: var(--accent-cyan);
+    }
+    .jodi-cell.has-stake .cell-number { color: var(--accent-cyan); }
+    .cell-stake-badge {
+      font-size: 7.5px;
+      font-weight: 900;
+      background: var(--primary-blue);
+      color: #fff;
+      padding: 1px 3px;
+      border-radius: 3px;
+      position: absolute;
+      bottom: 1px;
+      max-width: 90%;
+      overflow: hidden;
+    }
+
+    /* HARUF SECTION */
+    .haruf-wrap { display: flex; flex-direction: column; gap: 14px; }
+    .haruf-block {
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .haruf-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+    .haruf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .haruf-cell {
+      height: 48px;
+      background: #070e22;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .haruf-cell.has-stake {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: var(--accent-cyan);
+    }
+    .haruf-cell .haruf-digit {
+      font-family: var(--font-numeric);
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* CROSSING SECTION */
+    .crossing-card {
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .crossing-input {
+      width: 100%;
+      height: 44px;
+      background: #070e22;
+      border: 1.5px solid var(--border-blue);
+      border-radius: 8px;
+      color: #fff;
+      padding: 0 12px;
+      font-family: var(--font-numeric);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    .crossing-preview-box {
+      max-height: 160px;
+      overflow-y: auto;
+      background: #070e22;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 10px;
+    }
+    .tag-jodi {
+      background: #112248;
+      border: 1px solid var(--border-blue);
+      color: var(--accent-cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-numeric);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ARENA BOTTOM FOOTER */
+    .arena-footer-bar {
+      background: #0c1938;
+      border-top: 1px solid var(--border-blue);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .bet-summary-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .summary-col h3 {
+      font-family: var(--font-numeric);
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .summary-col span {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .summary-col.highlight h3 { color: var(--neon-green); }
+
+    .arena-actions-row { display: flex; gap: 6px; }
+    .btn-arena {
+      flex: 1;
+      height: 40px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-arena-clear { background: #1a2a4e; color: var(--text-muted); }
+    .btn-arena-confirm {
+      flex: 2;
+      background: var(--primary-blue);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .btn-arena-confirm.locked-btn {
+      background: #233150;
+      color: #64748b;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* HISTORY CARDS */
+    .history-batch-card {
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* PROFILE TAB */
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-blue);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .profile-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #091228;
+      border: 2px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      padding: 2px;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .wallet-cards-rail { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .balance-card { background: #0c1938; border: 1px solid var(--border-blue); border-radius: 10px; padding: 10px; }
+    .balance-card span { font-size: 9.5px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
+    .balance-card h2 { font-family: var(--font-numeric); font-size: 18px; font-weight: 800; color: var(--accent-cyan); margin-top: 2px; }
+
+    .fintech-actions-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .btn-fintech {
+      height: 42px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-fintech.deposit { background: var(--primary-blue); color: #fff; box-shadow: 0 4px 12px var(--primary-glow); }
+    .btn-fintech.withdraw { background: #112044; color: #fff; border: 1px solid var(--border-blue); }
+
+    /* SOCIAL CHANNELS */
+    .profile-section-block {
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .profile-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vip-channel-btn {
+      width: 100%;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      margin-bottom: 6px;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .vip-channel-btn.tg { background: rgba(56, 189, 248, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); }
+    .vip-channel-btn.wa { background: rgba(16, 185, 129, 0.12); border: 1px solid var(--neon-green); color: #6ee7b7; }
+    .vip-channel-btn.ig { background: rgba(244, 63, 94, 0.12); border: 1px solid var(--danger-coral); color: #fda4af; }
+
+    /* SOCIAL SHARE TRAY */
+    .social-share-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .btn-social {
+      height: 36px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 11px;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .btn-social.wa { background: #25D366; }
+    .btn-social.tg { background: #0088cc; }
+    .btn-social.ig { background: #e1306c; }
+    .btn-social.all { background: linear-gradient(135deg, #2563eb, #0284c7); font-weight: 900; }
+
+    .btn-profile-logout {
+      width: 100%;
+      height: 42px;
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid var(--danger-coral);
+      color: #fda4af;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 12.5px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    /* RESULTS CHART */
+    .chart-modal-window {
+      width: 96%;
+      max-width: 850px;
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .master-chart-scroll-box {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      background: #070e22;
+      margin-top: 10px;
+    }
+    .master-chart-table {
+      width: 100%;
+      border-collapse: collapse;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+    .master-chart-table th, .master-chart-table td {
+      padding: 8px 12px;
+      text-align: center;
+      border: 1px solid #142854;
+    }
+    .master-chart-table th {
+      background: #102148;
+      color: var(--accent-cyan);
+      font-size: 11px;
+      font-weight: 800;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .master-chart-table td.date-column {
+      background: #091228;
+      color: #94a3b8;
+      font-weight: 700;
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      border-right: 2px solid var(--border-blue);
+    }
+    .master-chart-table td.jodi-val {
+      font-family: var(--font-numeric);
+      font-weight: 800;
+      color: #fff;
+      font-size: 13px;
+    }
+    .master-chart-table td.jodi-val.highlight {
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    /* ==============================================================
+       NEW FINTECH DEPOSIT MODAL WITH AMOUNT CHIPS & VERIFICATION
+       ============================================================== */
+    .quick-amt-chips-tray {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .btn-amt-chip {
+      background: #070e22;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      height: 32px;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--font-numeric);
+    }
+    .btn-amt-chip.active, .btn-amt-chip:hover {
+      background: var(--primary-blue);
+      color: #fff;
+      border-color: var(--accent-cyan);
+    }
+
+    .upi-apps-tray { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 12px 0; }
+    .btn-upi-app {
+      background: #070e22;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-upi-app:active { transform: scale(0.95); }
+
+    /* 10-SECOND BANKING VERIFICATION OVERLAY */
+    .verify-timer-box {
+      background: #060c1d;
+      border: 1.5px solid var(--accent-gold);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .verify-timer-box h3 {
+      font-family: var(--font-numeric);
+      font-size: 24px;
+      font-weight: 900;
+      color: #fbbf24;
+      margin: 4px 0;
+    }
+
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--max-content-width);
+      height: var(--bottom-nav-height);
+      background: rgba(12, 25, 56, 0.96);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 5000;
+    }
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+    }
+    .nav-item.active { color: var(--accent-cyan); }
+    .nav-item span { font-size: 10px; font-weight: 700; }
+    .nav-icon { font-size: 18px; }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: rgba(5, 10, 23, 0.88);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-window {
+      width: 100%;
+      max-width: 380px;
+      background: #0c1938;
+      border: 1px solid var(--border-blue);
+      border-radius: 16px;
+      padding: 18px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .modal-header h3 { font-size: 15px; font-weight: 800; color: #fff; }
+    .btn-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; }
+    .form-input, select {
+      width: 100%;
+      height: 42px;
+      background: #070e22;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      color: #fff;
+      padding: 0 12px;
+      font-size: 13px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .form-input:focus, select:focus { border-color: var(--primary-blue); }
+
+    .btn-submit-blue {
+      width: 100%;
+      height: 42px;
+      background: var(--primary-blue);
+      border-radius: 8px;
+      border: none;
+      font-weight: 800;
+      font-size: 13px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    /* EXIT DIALOG */
+    .exit-modal-window {
+      width: 100%;
+      max-width: 340px;
+      background: #081128;
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
+      z-index: 30000;
+      overflow: hidden;
+    }
+
+    .exit-modal-window::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent, #2563eb, #38bdf8, transparent 40%);
+      animation: rotateGlow 3s linear infinite;
+      z-index: 1;
+    }
+
+    .exit-modal-window::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: #0a142c;
+      border-radius: 18px;
+      z-index: 2;
+    }
+
+    @keyframes rotateGlow {
+      100% { transform: rotate(360deg); }
+    }
+
+    .exit-content-wrap {
+      position: relative;
+      z-index: 3;
+    }
+
+    .exit-app-logo {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 12px;
+      border-radius: 14px;
+      background: #091228;
+      border: 1.5px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+      padding: 4px;
+    }
+
+    .exit-app-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .exit-title { font-size: 17px; font-weight: 900; color: #fff; letter-spacing: 0.5px; }
+    .exit-sub { font-size: 12px; color: var(--text-muted); margin: 6px 0 20px; }
+    .exit-buttons-row { display: flex; gap: 10px; }
+    .btn-exit-action {
+      flex: 1;
+      height: 42px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 12.5px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-exit-cancel { background: #102148; color: #cbd5e1; border: 1px solid var(--border-blue); }
+    .btn-exit-confirm { background: linear-gradient(135deg, #f43f5e, #e11d48); color: #fff; }
+
+    #toast-container {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+      width: 90%;
+      max-width: 340px;
+    }
+    .toast {
+      padding: 9px 14px;
+      border-radius: 8px;
+      background: #0c1938;
+      border: 1px solid var(--primary-blue);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <div id="app-root">
+
+    <!-- TOP HEADER -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-logo-badge">
+          <img src="https://i.ibb.co/23cC8vVz/66912-removebg-preview.png" alt="DREAM DIGIT Logo" />
+        </div>
+        <div class="brand-info">
+          <h1>DREAM DIGIT</h1>
+          <span>SATTA &amp; CASINO</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="wallet-pill" id="header-wallet-btn">
+          <span style="color:var(--accent-cyan);">🪙</span>
+          <span class="balance-amount" id="header-balance-display">₹0.00</span>
+        </div>
+        <button class="btn-deposit-top" id="btn-header-deposit">+</button>
+      </div>
+    </header>
+
+    <!-- TAB 1: BAZAARS LOBBY -->
+    <main id="tab-bazaars" class="tab-content active">
+      <div class="lobby-header-bar">
+        <div class="live-counters-wrap">
+          <div class="pill-live online" id="live-online-counter">🟢 15 Online</div>
+          <div class="pill-live users" id="live-users-counter">👥 142 Users</div>
+        </div>
+
+        <div style="display:flex; gap:6px;">
+          <button class="btn-header-action" id="btn-open-chart-modal">📅 Results Chart</button>
+          <button class="btn-header-action" id="btn-open-results-chart" style="color:#60a5fa;">🌐 Web Link</button>
+        </div>
+      </div>
+
+      <div class="bazaars-grid" id="bazaars-list-container"></div>
+    </main>
+
+    <!-- TAB 2: MY BETS -->
+    <section id="tab-bets" class="tab-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="font-size:15px; color:#fff;">Betting Ledger</h3>
+      </div>
+      <div id="bets-ledger-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+    </section>
+
+    <!-- TAB 3: ME (PROFILE) -->
+    <section id="tab-profile" class="tab-content">
+      <div class="profile-card">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="profile-avatar" id="user-avatar-btn">
+            <img src="https://i.ibb.co/23cC8vVz/66912-removebg-preview.png" alt="Profile Logo" />
+          </div>
+          <div>
+            <h3 id="profile-display-name" style="font-size:14px; color:#fff;">Player_User</h3>
+            <p id="profile-phone-number" style="font-size:11px; color:#94a3b8;">+91 ••••••••••</p>
+          </div>
+        </div>
+        <span style="font-size:10px; font-weight:800; color:var(--neon-green); background:rgba(16,185,129,0.15); padding:4px 8px; border-radius:6px;">VIP ACTIVE</span>
+      </div>
+
+      <div class="wallet-cards-rail">
+        <div class="balance-card">
+          <span>Main Real Cash</span>
+          <h2 id="profile-wallet-balance">₹0.00</h2>
+        </div>
+        <div class="balance-card">
+          <span>Referral Bonus</span>
+          <h2 id="profile-bonus-balance" style="color:var(--neon-green);">₹0.00</h2>
+        </div>
+      </div>
+
+      <div class="fintech-actions-row">
+        <button class="btn-fintech deposit" id="btn-open-deposit-modal">⚡ Instant Deposit</button>
+        <button class="btn-fintech withdraw" id="btn-open-withdraw-modal">🏦 Cashout Funds</button>
+      </div>
+
+      <!-- VIP SOCIAL CHANNELS -->
+      <div class="profile-section-block">
+        <div class="profile-section-title">
+          <span>🌐</span> Official Social Channels &amp; VIP Groups
+        </div>
+        <a href="https://t.me/" target="_blank" class="vip-channel-btn tg">
+          <span>✈️ Join VIP Telegram Channel</span>
+          <span>Open ➔</span>
+        </a>
+        <a href="https://whatsapp.com/channel" target="_blank" class="vip-channel-btn wa">
+          <span>📱 Official WhatsApp Community</span>
+          <span>Join ➔</span>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="vip-channel-btn ig">
+          <span>📸 Follow Instagram Page</span>
+          <span>View ➔</span>
+        </a>
+      </div>
+
+      <!-- REFERRAL & MULTI-APP SHARE -->
+      <div class="profile-section-block">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h4 style="font-size:13px; color:#fff;">Invite &amp; Earn 10% Commission</h4>
+          <span style="background:var(--neon-green); color:#000; font-size:9.5px; font-weight:900; padding:2px 6px; border-radius:10px;">10% SHARE</span>
+        </div>
+        <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">10% commission credited when friend deposits ₹300 or more!</p>
+
+        <div class="social-share-buttons">
+          <button class="btn-social wa" id="btn-share-wa">WhatsApp</button>
+          <button class="btn-social tg" id="btn-share-tg">Telegram</button>
+          <button class="btn-social ig" id="btn-share-ig">Instagram</button>
+          <button class="btn-social all" id="btn-share-all">More Apps</button>
+        </div>
+
+        <div style="display:flex; gap:6px; margin-top:10px;">
+          <input type="text" id="referral-link-field" class="form-input" style="margin:0; font-size:11px;" readonly value="Loading..." />
+          <button id="btn-copy-referral" style="background:var(--primary-blue); color:#fff; border:none; padding:0 12px; border-radius:8px; font-weight:800; font-size:11px; cursor:pointer;">COPY</button>
+        </div>
+      </div>
+
+      <!-- RULES & SUPPORT -->
+      <div class="profile-section-block">
+        <div class="profile-section-title">
+          <span>📖</span> Game Help &amp; Rules
+        </div>
+        <button id="btn-open-rules-modal" style="width:100%; height:38px; background:#070e22; border:1px solid var(--border-blue); color:#fff; border-radius:8px; font-size:11.5px; font-weight:700; margin-bottom:6px; cursor:pointer;">
+          🎲 Jodi, Haruf &amp; Crossing Payout Rules
+        </button>
+        <button id="btn-open-support" style="width:100%; height:38px; background:#070e22; border:1px solid var(--border-blue); color:#fff; border-radius:8px; font-size:11.5px; font-weight:700; cursor:pointer;">
+          🎧 24/7 Live Executive Help Desk
+        </button>
+      </div>
+
+      <button class="btn-profile-logout" id="btn-profile-logout">
+        🚪 LOGOUT FROM ACCOUNT
+      </button>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="tab-bazaars">
+        <div class="nav-icon">🎲</div>
+        <span>Bazaars</span>
+      </button>
+      <button class="nav-item" data-target="tab-bets">
+        <div class="nav-icon">📜</div>
+        <span>My Bets</span>
+      </button>
+      <button class="nav-item" data-target="tab-profile">
+        <div class="nav-icon">👤</div>
+        <span>Me</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- MODAL 1: BETTING ARENA -->
+  <div id="jodi-arena-modal">
+    <div class="arena-topbar">
+      <div>
+        <h2 id="arena-bazaar-title" style="font-size:15px; color:var(--accent-cyan);">Palika Bazar</h2>
+        <span id="arena-bazaar-timer" style="font-size:11px; color:#94a3b8;">Calculating timings...</span>
+      </div>
+      <button class="btn-close-arena" id="btn-close-jodi-modal">&times;</button>
+    </div>
+
+    <div class="arena-mode-switch">
+      <button class="btn-mode-tab active" data-mode="JODI">JODI (00-99)</button>
+      <button class="btn-mode-tab" data-mode="HARUF">HARUF (A/B)</button>
+      <button class="btn-mode-tab" data-mode="CROSSING">CROSSING</button>
+    </div>
+
+    <div class="stake-input-tray">
+      <div class="stake-field-wrap">
+        <span>₹</span>
+        <input type="number" id="input-bet-stake" class="input-stake-val" placeholder="Amount" value="10" min="5" />
+      </div>
+      <div class="quick-chips-row">
+        <button class="btn-quick-add" data-add="10">+10</button>
+        <button class="btn-quick-add" data-add="50">+50</button>
+        <button class="btn-quick-add" data-add="100">+100</button>
+        <button class="btn-quick-add" data-add="500">+500</button>
+      </div>
+    </div>
+
+    <div class="arena-viewport">
+      <div class="arena-lock-overlay" id="arena-closed-veil">
+        <div class="arena-lock-badge">🔒</div>
+        <div class="arena-lock-title">MARKET IS LOCKED</div>
+        <div class="arena-lock-sub">Bidding is closed right now. Market will automatically unblock in:</div>
+        <div class="arena-lock-timer-box">
+          <span>COUNTDOWN TO UNBLOCK</span>
+          <div class="arena-lock-countdown" id="arena-lock-countdown">00:00:00</div>
+        </div>
+      </div>
+
+      <div id="arena-view-jodi" class="jodi-100-grid"></div>
+
+      <div id="arena-view-haruf" class="haruf-wrap" style="display:none;">
+        <div class="haruf-block">
+          <div class="haruf-title">Ander Haruf (A) — Payout 9.5x</div>
+          <div class="haruf-grid" id="haruf-grid-ander"></div>
+        </div>
+        <div class="haruf-block">
+          <div class="haruf-title">Bahar Haruf (B) — Payout 9.5x</div>
+          <div class="haruf-grid" id="haruf-grid-bahar"></div>
+        </div>
+      </div>
+
+      <div id="arena-view-crossing" class="crossing-card" style="display:none;">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">Enter 2 to 6 Digits for Crossing:</div>
+        <input type="number" id="input-crossing-digits" class="crossing-input" placeholder="Type digits e.g. 1234" maxlength="6" />
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+          <label style="font-size:12px; color:#fff; display:flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="chk-crossing-joda" checked /> Include Joda (Pairs: 11, 22...)
+          </label>
+          <button id="btn-generate-crossing" style="padding:6px 12px; background:var(--primary-blue); color:#fff; border:none; border-radius:6px; font-weight:800; font-size:11px; cursor:pointer;">Generate Jodis</button>
+        </div>
+
+        <div style="font-size:11px; color:var(--text-dim); margin-top:10px;" id="crossing-count-label">Generated: 0 Jodis</div>
+        <div class="crossing-preview-box" id="crossing-preview-box"></div>
+      </div>
+    </div>
+
+    <div class="arena-footer-bar">
+      <div class="bet-summary-stats">
+        <div class="summary-col">
+          <span>Selections</span>
+          <h3 id="arena-count-display">0 Items</h3>
+        </div>
+        <div class="summary-col">
+          <span>Total Stake</span>
+          <h3 id="arena-stake-display">₹0</h3>
+        </div>
+        <div class="summary-col highlight">
+          <span>Winning Payout (90x)</span>
+          <h3 id="arena-payout-display">₹0</h3>
+        </div>
+      </div>
+      <div class="arena-actions-row">
+        <button class="btn-arena btn-arena-clear" id="btn-arena-clear-all">Clear</button>
+        <button class="btn-arena btn-arena-confirm" id="btn-arena-submit-bids">CONFIRM BET</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: RESULTS CHART -->
+  <div class="modal-overlay" id="chart-modal">
+    <div class="chart-modal-window">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size:15px; color:#fff;">Results Chart</h3>
+          <span style="font-size:10.5px; color:var(--text-muted);">Real declared market results</span>
+        </div>
+        <button class="btn-close" id="btn-close-chart">&times;</button>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; background:#070e22; padding:8px 12px; border-radius:8px;">
+        <span style="font-size:12px; font-weight:700; color:var(--accent-cyan);">Select Month:</span>
+        <input type="month" id="chart-month-picker" style="height:34px; background:#0c1938; border:1px solid var(--border-blue); border-radius:6px; color:#fff; padding:0 8px; font-size:12px; outline:none;" />
+      </div>
+
+      <div class="master-chart-scroll-box">
+        <table class="master-chart-table" id="master-chart-table">
+          <thead>
+            <tr id="master-chart-header-row">
+              <th class="date-column">DATE</th>
+            </tr>
+          </thead>
+          <tbody id="master-chart-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: RULES -->
+  <div class="modal-overlay" id="rules-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Game Rules &amp; Payouts</h3>
+        <button class="btn-close" id="btn-close-rules">&times;</button>
+      </div>
+      <div style="font-size:12.5px; color:#cbd5e1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
+        <div style="background:#070e22; padding:10px; border-radius:8px; border:1px solid var(--border-subtle);">
+          <strong style="color:var(--accent-cyan); display:block; margin-bottom:3px;">🎲 Jodi Betting (01 to 99 &amp; 00)</strong>
+          Multiplier: <span style="color:var(--neon-green); font-weight:800;">90x Payout</span><br/>
+          (Example: ₹10 bet on winning Jodi = ₹900 credit directly into wallet).
+        </div>
+
+        <div style="background:#070e22; padding:10px; border-radius:8px; border:1px solid var(--border-subtle);">
+          <strong style="color:var(--accent-cyan); display:block; margin-bottom:3px;">🔢 Haruf Betting (Ander / Bahar 0-9)</strong>
+          Multiplier: <span style="color:var(--neon-green); font-weight:800;">9.5x Payout</span><br/>
+          (Example: ₹100 on Ander 5 = ₹950 winning if 5 hits open digit).
+        </div>
+
+        <div style="background:#070e22; padding:10px; border-radius:8px; border:1px solid var(--border-subtle);">
+          <strong style="color:var(--accent-cyan); display:block; margin-bottom:3px;">⚡ Crossing Bets</strong>
+          Cross combinations generated instantly from selected digits with accurate single-Jodi payout calculation.
+        </div>
+      </div>
+      <button class="btn-submit-blue" id="btn-close-rules-btn" style="margin-top:14px;">GOT IT</button>
+    </div>
+  </div>
+
+  <!-- MODAL 4: BET DETAILS DRILL-DOWN -->
+  <div class="modal-overlay" id="bet-detail-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="drill-game-name">Game Details</h3>
+        <button class="btn-close" id="btn-close-drill">&times;</button>
+      </div>
+      <div style="font-size:12px; color:#94a3b8; margin-bottom:10px;" id="drill-meta-info">Batch ID &amp; Time</div>
+      <div style="max-height:220px; overflow-y:auto; background:#070e22; border-radius:8px; padding:10px; margin-bottom:12px;">
+        <table style="width:100%; font-size:12px; border-collapse:collapse;" id="drill-table"></table>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-weight:800; font-size:13px;">
+        <span>Total Stake: <span id="drill-total-stake" style="color:var(--accent-cyan);">₹0</span></span>
+        <span>Per-Win (90x): <span id="drill-total-payout" style="color:var(--neon-green);">₹0</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================
+       MODAL 5: INSTANT UPI DEPOSIT (PHONEPE, GPAY, PAYTM DIRECT & 10s VERIFICATION)
+       ============================================================== -->
+  <div class="modal-overlay" id="deposit-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Instant UPI Deposit</h3>
+        <button class="btn-close" id="btn-close-deposit">&times;</button>
+      </div>
+
+      <!-- AMOUNT CHIPS -->
+      <label style="font-size:11px; font-weight:800; color:var(--text-muted); display:block; margin-bottom:6px;">SELECT OR ENTER AMOUNT (₹)</label>
+      <div class="quick-amt-chips-tray">
+        <button class="btn-amt-chip" data-amt="200">₹200</button>
+        <button class="btn-amt-chip active" data-amt="500">₹500</button>
+        <button class="btn-amt-chip" data-amt="1000">₹1000</button>
+        <button class="btn-amt-chip" data-amt="2000">₹2000</button>
+        <button class="btn-amt-chip" data-amt="5000">₹5000</button>
+      </div>
+
+      <input type="number" id="deposit-amount-input" class="form-input numeric" placeholder="Enter Amount (Min ₹100)" value="500" style="font-size:16px; font-weight:800; color:var(--accent-cyan);" />
+
+      <!-- QR CODE CONTAINER -->
+      <div style="background:#fff; border-radius:10px; padding:8px; text-align:center; margin-bottom:10px;">
+        <img id="deposit-qr-img" src="" style="width:130px; height:130px; object-fit:contain;" alt="Payment QR" />
+        <p style="font-size:9.5px; color:#000; font-weight:900; margin-top:2px;">SCAN WITH ANY UPI APP</p>
+      </div>
+
+      <!-- DIRECT UPI APPS (NO ERR_UNKNOWN_URL_SCHEME) -->
+      <div class="upi-apps-tray">
+        <div class="btn-upi-app" id="pay-phonepe">
+          <span style="font-size:22px;">🟣</span>
+          <span>PhonePe</span>
+        </div>
+        <div class="btn-upi-app" id="pay-gpay">
+          <span style="font-size:22px;">🔵</span>
+          <span>GPay</span>
+        </div>
+        <div class="btn-upi-app" id="pay-paytm">
+          <span style="font-size:22px;">🔷</span>
+          <span>Paytm</span>
+        </div>
+        <div class="btn-upi-app" id="pay-bhim">
+          <span style="font-size:22px;">🇮🇳</span>
+          <span>BHIM / All</span>
+        </div>
+      </div>
+
+      <!-- 10-SECOND LIVE BANKING VERIFICATION COUNTDOWN BOX -->
+      <div class="verify-timer-box" id="verify-timer-box">
+        <span style="font-size:11px; color:var(--accent-gold); font-weight:800;">BANKING NETWORK VERIFICATION</span>
+        <h3 id="verify-countdown-text">10s</h3>
+        <p style="font-size:10.5px; color:var(--text-muted);">Please wait while we verify your 12-digit UTR with banking server...</p>
+      </div>
+
+      <input type="number" id="deposit-utr-input" class="form-input numeric" placeholder="Enter 12-Digit UTR Number from Receipt" maxlength="12" style="letter-spacing:1.5px;" />
+      
+      <button class="btn-submit-blue" id="btn-submit-deposit-utr">
+        ⚡ VERIFY &amp; SUBMIT PAYMENT
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL 6: CASHOUT -->
+  <div class="modal-overlay" id="withdraw-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Cashout Real Funds</h3>
+        <button class="btn-close" id="btn-close-withdraw">&times;</button>
+      </div>
+
+      <div style="display:flex; gap:6px; margin-bottom:12px;">
+        <button class="btn-fintech active" id="tab-opt-upi" style="flex:1;">UPI Transfer</button>
+        <button class="btn-fintech" id="tab-opt-bank" style="flex:1;">Bank Account</button>
+      </div>
+
+      <input type="number" id="withdraw-amount-input" class="form-input" placeholder="Amount (Min ₹100)" />
+
+      <div id="form-withdraw-upi">
+        <input type="text" id="withdraw-upi-vpa" class="form-input" placeholder="Enter UPI ID (e.g. name@okhdfcbank)" />
+      </div>
+
+      <div id="form-withdraw-bank" style="display:none;">
+        <select id="withdraw-bank-select">
+          <option value="State Bank of India">State Bank of India (SBI)</option>
+          <option value="HDFC Bank">HDFC Bank</option>
+          <option value="ICICI Bank">ICICI Bank</option>
+          <option value="Punjab National Bank">Punjab National Bank (PNB)</option>
+          <option value="Axis Bank">Axis Bank</option>
+          <option value="Bank of Baroda">Bank of Baroda (BOB)</option>
+          <option value="Canara Bank">Canara Bank</option>
+          <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+          <option value="Union Bank of India">Union Bank of India</option>
+          <option value="OTHER">-- Other Any Indian Bank --</option>
+        </select>
+
+        <div id="other-bank-name-wrap" style="display:none;">
+          <input type="text" id="withdraw-custom-bank" class="form-input" placeholder="Type Bank Name" />
+        </div>
+
+        <input type="text" id="withdraw-acct-name" class="form-input" placeholder="Account Holder Name" />
+        <input type="password" id="withdraw-acct-num1" class="form-input" placeholder="Bank Account Number" />
+        <input type="text" id="withdraw-acct-num2" class="form-input" placeholder="Confirm Account Number" />
+        <input type="text" id="withdraw-acct-ifsc" class="form-input" placeholder="IFSC Code (11 Digits)" maxlength="11" style="text-transform:uppercase;" />
+      </div>
+
+      <button class="btn-submit-blue" id="btn-submit-cashout">CONFIRM WITHDRAWAL</button>
+    </div>
+  </div>
+
+  <!-- MODAL 7: EXIT CONFIRMATION DIALOG -->
+  <div class="modal-overlay" id="exit-confirm-modal">
+    <div class="exit-modal-window">
+      <div class="exit-content-wrap">
+        <div class="exit-app-logo">
+          <img src="https://i.ibb.co/23cC8vVz/66912-removebg-preview.png" alt="Dream Digit" />
+        </div>
+        <h3 class="exit-title">Exit DREAM DIGIT?</h3>
+        <p class="exit-sub">Are you sure you want to close and exit the application?</p>
+        <div class="exit-buttons-row">
+          <button class="btn-exit-action btn-exit-cancel" id="btn-cancel-exit">
+            <span>❌ Cancel</span>
+          </button>
+          <button class="btn-exit-action btn-exit-confirm" id="btn-confirm-exit">
+            <span>🚪 Exit App</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE ENGINE & FULL APP JAVASCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getDatabase, ref, get, set, push, onValue, update, increment 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6bVki5gEumPOimw6o30G8aX52Xdutmrk",
+      authDomain: "luckboxes-98766.firebaseapp.com",
+      databaseURL: "https://luckboxes-98766-default-rtdb.firebaseio.com",
+      projectId: "luckboxes-98766",
+      storageBucket: "luckboxes-98766.firebasestorage.app",
+      messagingSenderId: "470854850627",
+      appId: "1:470854850627:web:e25d416dfb9f244e77dcf6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    function showToast(msg) {
+      if (window.Android && window.Android.showToast) {
+        window.Android.showToast(msg);
+      }
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerText = msg;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 2800);
+    }
+
+    const AppState = {
+      uid: null,
+      phone: null,
+      name: "Player_User",
+      wallet: 0.00,
+      bonus: 0.00,
+      activeBazaar: null,
+      currentArenaMode: "JODI",
+      stagedBets: new Map(),
+      bazaarsList: [],
+      adminUpi: "dreamdigit@upi", // Synchronized with Admin Panel Firebase
+      customQrUrl: "",
+      officialResultsUrl: "https://www.google.com/search?q=satta+matka+live+results"
+    };
+
+    // ==============================================================
+    // STEP-BY-STEP BACK NAVIGATION SYSTEM
+    // ==============================================================
+    window.addEventListener("popstate", () => {
+      handleStepBack();
+    });
+
+    window.handleAndroidBack = function() {
+      return handleStepBack();
+    };
+
+    function handleStepBack() {
+      const exitModal = document.getElementById("exit-confirm-modal");
+      if (exitModal.classList.contains("open")) {
+        exitModal.classList.remove("open");
+        return true;
+      }
+
+      const arenaModal = document.getElementById("jodi-arena-modal");
+      if (arenaModal.classList.contains("open")) {
+        closeArenaModal();
+        return true;
+      }
+
+      const openModal = document.querySelector(".modal-overlay.open");
+      if (openModal) {
+        openModal.classList.remove("open");
+        return true;
+      }
+
+      const currentTab = document.querySelector(".tab-content.active");
+      if (currentTab && currentTab.id !== "tab-bazaars") {
+        switchTab("tab-bazaars");
+        return true;
+      }
+
+      openExitDialog();
+      return true;
+    }
+
+    function openExitDialog() {
+      document.getElementById("exit-confirm-modal").classList.add("open");
+      history.pushState({ modal: "exit" }, "", "#exit");
+    }
+
+    document.getElementById("btn-cancel-exit").onclick = () => {
+      document.getElementById("exit-confirm-modal").classList.remove("open");
+    };
+
+    document.getElementById("btn-confirm-exit").onclick = () => {
+      if (window.Android && window.Android.exitApp) {
+        window.Android.exitApp();
+      } else {
+        window.location.href = "https://exit.app";
+      }
+    };
+
+    function switchTab(tabId) {
+      document.querySelectorAll(".bottom-nav .nav-item").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+
+      const targetBtn = document.querySelector(`.bottom-nav .nav-item[data-target="${tabId}"]`);
+      if (targetBtn) targetBtn.classList.add("active");
+
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) targetTab.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.pushState({ tab: tabId }, "", `#${tabId}`);
+    }
+
+    // ==============================================================
+    // TIME SCHEDULE & COUNTDOWN ENGINE
+    // ==============================================================
+    function parseTimeString(timeStr) {
+      const parts = timeStr.trim().split(" ");
+      let [hours, minutes] = parts[0].split(":").map(Number);
+      const modifier = parts[1].toUpperCase();
+
+      if (modifier === "PM" && hours < 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+
+      return { hours, minutes };
+    }
+
+    function getBazaarStatus(timeRangeStr) {
+      if (!timeRangeStr || !timeRangeStr.includes("-")) {
+        return { isOpen: true, countdownText: "Open 24x7", isUnlock: false };
+      }
+
+      try {
+        const [openStr, closeStr] = timeRangeStr.split("-").map(s => s.trim());
+        const openTime = parseTimeString(openStr);
+        const closeTime = parseTimeString(closeStr);
+
+        const now = new Date();
+        let openDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), openTime.hours, openTime.minutes, 0);
+        let closeDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), closeTime.hours, closeTime.minutes, 0);
+
+        if (closeDate <= openDate) {
+          if (now >= openDate) {
+            closeDate.setDate(closeDate.getDate() + 1);
+          } else {
+            openDate.setDate(openDate.getDate() - 1);
+          }
+        }
+
+        const nowMs = now.getTime();
+        const openMs = openDate.getTime();
+        const closeMs = closeDate.getTime();
+
+        if (nowMs >= openMs && nowMs < closeMs) {
+          const diffSec = Math.max(0, Math.floor((closeMs - nowMs) / 1000));
+          return {
+            isOpen: true,
+            countdownText: formatSecondsToHHMMSS(diffSec),
+            isUnlock: false
+          };
+        } else {
+          let nextOpen = new Date(openDate);
+          if (nowMs >= closeMs) {
+            nextOpen.setDate(nextOpen.getDate() + 1);
+          }
+          const diffSec = Math.max(0, Math.floor((nextOpen.getTime() - nowMs) / 1000));
+          return {
+            isOpen: false,
+            countdownText: formatSecondsToHHMMSS(diffSec),
+            isUnlock: true
+          };
+        }
+      } catch (err) {
+        return { isOpen: true, countdownText: "Open", isUnlock: false };
+      }
+    }
+
+    function formatSecondsToHHMMSS(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    setInterval(() => {
+      AppState.bazaarsList.forEach(b => {
+        const card = document.getElementById(`bazaar-card-${b.id}`);
+        if (!card) return;
+
+        const status = getBazaarStatus(b.time);
+        const badge = card.querySelector(".status-badge");
+        const countEl = card.querySelector(".bazaar-countdown");
+        const playBtn = card.querySelector(".btn-play-bazaar");
+
+        if (status.isOpen) {
+          card.classList.remove("is-closed");
+          badge.className = "status-badge open";
+          badge.innerText = "OPEN";
+          countEl.className = "bazaar-countdown open-count";
+          countEl.innerHTML = `⏳ Closes in: ${status.countdownText}`;
+          playBtn.className = "btn-play-bazaar";
+          playBtn.innerText = "PLAY NOW";
+        } else {
+          card.classList.add("is-closed");
+          badge.className = "status-badge closed";
+          badge.innerText = "CLOSED";
+          countEl.className = "bazaar-countdown closed-count";
+          countEl.innerHTML = `🔒 Unlocks in: ${status.countdownText}`;
+          playBtn.className = "btn-play-bazaar btn-locked";
+          playBtn.innerText = "LOCKED 🔒";
+        }
+      });
+
+      if (AppState.activeBazaar) {
+        const currentBazaar = AppState.bazaarsList.find(b => b.id === AppState.activeBazaar.id) || AppState.activeBazaar;
+        const arenaStatus = getBazaarStatus(currentBazaar.time);
+        const veil = document.getElementById("arena-closed-veil");
+        const topTimer = document.getElementById("arena-bazaar-timer");
+        const confirmBtn = document.getElementById("btn-arena-submit-bids");
+        const lockCountdown = document.getElementById("arena-lock-countdown");
+
+        if (!arenaStatus.isOpen) {
+          veil.classList.add("active");
+          confirmBtn.classList.add("locked-btn");
+          topTimer.innerText = `Closed • Unlocks in: ${arenaStatus.countdownText}`;
+          topTimer.style.color = "var(--danger-coral)";
+          lockCountdown.innerText = arenaStatus.countdownText;
+        } else {
+          veil.classList.remove("active");
+          confirmBtn.classList.remove("locked-btn");
+          topTimer.innerText = `Open • Closes in: ${arenaStatus.countdownText}`;
+          topTimer.style.color = "var(--neon-green)";
+        }
+      }
+    }, 1000);
+
+    // ==============================================================
+    // SKETCHWARE USER AUTH BRIDGE
+    // ==============================================================
+    window.setUserDataFromAndroid = function(uid, phone, name) {
+      AppState.uid = uid;
+      AppState.phone = phone;
+      AppState.name = name || `Player_${phone.slice(-4)}`;
+      localStorage.setItem("dd_uid", uid);
+      localStorage.setItem("dd_phone", phone);
+      attachUserListener(uid);
+    };
+
+    const storedUid = localStorage.getItem("dd_uid");
+    const storedPhone = localStorage.getItem("dd_phone");
+    if (storedUid) {
+      AppState.uid = storedUid;
+      AppState.phone = storedPhone;
+      attachUserListener(storedUid);
+    } else {
+      renderUserUI();
+    }
+
+    function attachUserListener(uid) {
+      onValue(ref(db, `users/${uid}`), (snap) => {
+        if (snap.exists()) {
+          const u = snap.val();
+          AppState.name = u.username || AppState.name;
+          AppState.phone = u.mobile || AppState.phone;
+          AppState.wallet = Number(u.wallet || 0);
+          AppState.bonus = Number(u.bonus || 0);
+          renderUserUI();
+        }
+      });
+      listenToUserBatches(uid);
+    }
+
+    function renderUserUI() {
+      document.getElementById("header-balance-display").innerText = `₹${AppState.wallet.toFixed(2)}`;
+      document.getElementById("profile-wallet-balance").innerText = `₹${AppState.wallet.toFixed(2)}`;
+      document.getElementById("profile-bonus-balance").innerText = `₹${AppState.bonus.toFixed(2)}`;
+      document.getElementById("profile-display-name").innerText = `${AppState.name}`;
+      document.getElementById("profile-phone-number").innerText = AppState.phone ? `+91 ${AppState.phone}` : "Not Logged In";
+
+      const refLink = `${window.location.origin}${window.location.pathname}?ref=${AppState.phone || "VIP"}`;
+      document.getElementById("referral-link-field").value = refLink;
+    }
+
+    // ==============================================================
+    // SETTINGS SYNC (FETCH ADMIN UPI & CUSTOM QR LIVE FROM FIREBASE)
+    // ==============================================================
+    onValue(ref(db, "settings"), (snap) => {
+      if (snap.exists()) {
+        const s = snap.val();
+        if (s.adminUpi) AppState.adminUpi = s.adminUpi;
+        if (s.qrImageUrl) AppState.customQrUrl = s.qrImageUrl;
+        if (s.officialResultsUrl) AppState.officialResultsUrl = s.officialResultsUrl;
+      }
+      refreshDepositUi();
+    });
+
+    // ==============================================================
+    // INSTANT DEPOSIT WITH AMOUNT CHIPS, NATIVE UPI & 10s VERIFICATION
+    // ==============================================================
+    // Quick Amount Chips Handlers
+    document.querySelectorAll(".btn-amt-chip").forEach(chip => {
+      chip.onclick = () => {
+        document.querySelectorAll(".btn-amt-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        const val = chip.getAttribute("data-amt");
+        document.getElementById("deposit-amount-input").value = val;
+        refreshDepositUi();
+      };
+    });
+
+    document.getElementById("deposit-amount-input").addEventListener("input", (e) => {
+      document.querySelectorAll(".btn-amt-chip").forEach(c => {
+        if (c.getAttribute("data-amt") === e.target.value) c.classList.add("active");
+        else c.classList.remove("active");
+      });
+      refreshDepositUi();
+    });
+
+    function refreshDepositUi() {
+      const amt = Number(document.getElementById("deposit-amount-input").value) || 500;
+      const upiUrl = `upi://pay?pa=${AppState.adminUpi}&pn=${encodeURIComponent("DreamDigit")}&am=${amt}&cu=INR&tn=${encodeURIComponent("DreamDigit Recharge")}`;
+      
+      const qrImg = document.getElementById("deposit-qr-img");
+      if (AppState.customQrUrl) {
+        qrImg.src = AppState.customQrUrl;
+      } else {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiUrl)}`;
+      }
+    }
+
+    // Direct Native UPI Apps Trigger
+    function openNativeUpi(pkg) {
+      const amt = Number(document.getElementById("deposit-amount-input").value) || 500;
+      if (amt < 100) { showToast("Minimum deposit is ₹100"); return; }
+
+      const rawUpiUri = `upi://pay?pa=${AppState.adminUpi}&pn=${encodeURIComponent("DreamDigit")}&am=${amt}&cu=INR&tn=${encodeURIComponent("DreamDigit Recharge")}`;
+
+      // 1. If Sketchware Android Interface is ready
+      if (window.Android && window.Android.openUpi) {
+        window.Android.openUpi(rawUpiUri, pkg);
+        return;
+      }
+
+      // 2. Direct Window Location (Handled by shouldOverrideUrlLoading in Sketchware)
+      window.location.href = rawUpiUri;
+    }
+
+    document.getElementById("pay-phonepe").onclick = () => openNativeUpi("com.phonepe.app");
+    document.getElementById("pay-gpay").onclick = () => openNativeUpi("com.google.android.apps.nbu.paisa.user");
+    document.getElementById("pay-paytm").onclick = () => openNativeUpi("net.one97.paytm");
+    document.getElementById("pay-bhim").onclick = () => openNativeUpi("");
+
+    // 10-SECOND BANKING SERVER VERIFICATION COUNTDOWN
+    let isVerifying = false;
+    document.getElementById("btn-submit-deposit-utr").onclick = () => {
+      if (isVerifying) return;
+      if (!AppState.uid) { showToast("Please login first!"); return; }
+
+      const amt = Number(document.getElementById("deposit-amount-input").value);
+      const utr = document.getElementById("deposit-utr-input").value.trim();
+
+      if (amt < 100) { showToast("Minimum deposit is ₹100"); return; }
+      if (utr.length !== 12 || isNaN(utr)) {
+        showToast("❌ Invalid UTR! Enter exact 12-digit UTR from receipt.");
+        return;
+      }
+
+      // Start 10-Second Live Banking Verification Simulation
+      isVerifying = true;
+      const verifyBox = document.getElementById("verify-timer-box");
+      const countdownText = document.getElementById("verify-countdown-text");
+      const submitBtn = document.getElementById("btn-submit-deposit-utr");
+
+      verifyBox.style.display = "block";
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.5";
+
+      let secondsLeft = 10;
+      countdownText.innerText = `${secondsLeft}s`;
+
+      const interval = setInterval(async () => {
+        secondsLeft--;
+        if (secondsLeft > 0) {
+          countdownText.innerText = `${secondsLeft}s`;
+        } else {
+          clearInterval(interval);
+          verifyBox.style.display = "none";
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = "1";
+          isVerifying = false;
+
+          // Submit to Firebase Database
+          try {
+            await push(ref(db, "transactions"), {
+              userId: AppState.uid,
+              userPhone: AppState.phone,
+              type: "DEPOSIT",
+              amount: amt,
+              utrNumber: utr,
+              status: "PENDING",
+              createdAt: new Date().toISOString()
+            });
+
+            closeModalOverlay("deposit-modal");
+            document.getElementById("deposit-utr-input").value = "";
+            showToast(`✅ Payment Verified! Receipt of ₹${amt} sent to admin.`);
+          } catch (e) {
+            showToast("Network error. Please try again.");
+          }
+        }
+      }, 1000);
+    };
+
+    // ==============================================================
+    // BAZAARS LISTENER
+    // ==============================================================
+    function listenToDynamicBazaars() {
+      onValue(ref(db, "bazaars"), (snap) => {
+        const container = document.getElementById("bazaars-list-container");
+        container.innerHTML = "";
+
+        const defaultBazaars = [
+          { id: "palika", name: "Palika Bazar", time: "09:00 AM - 10:45 AM" },
+          { id: "laxmi", name: "Laxmi Bazar", time: "11:00 AM - 12:30 PM" },
+          { id: "delhi", name: "Delhi Bazar", time: "01:00 PM - 02:35 PM" },
+          { id: "ganesh", name: "Shree Ganesh", time: "03:00 PM - 04:45 PM" },
+          { id: "faridabad", name: "Faridabad", time: "05:00 PM - 05:50 PM" },
+          { id: "ghaziabad", name: "Ghaziabad", time: "06:20 PM - 09:50 PM" },
+          { id: "gali", name: "Gali", time: "10:00 PM - 11:20 PM" },
+          { id: "desawer", name: "Desawer", time: "11:30 PM - 02:00 AM" }
+        ];
+
+        if (!snap.exists()) {
+          AppState.bazaarsList = defaultBazaars;
+        } else {
+          const customGames = Object.values(snap.val());
+          const merged = [...defaultBazaars];
+          customGames.forEach(cg => {
+            if (!merged.find(m => m.id === cg.id)) merged.push(cg);
+          });
+          AppState.bazaarsList = merged;
+        }
+
+        AppState.bazaarsList.forEach(b => {
+          const status = getBazaarStatus(b.time);
+          const card = document.createElement("div");
+          card.className = `bazaar-card ${!status.isOpen ? "is-closed" : ""}`;
+          card.id = `bazaar-card-${b.id}`;
+
+          card.innerHTML = `
+            <div class="bazaar-card-main">
+              <div class="bazaar-meta">
+                <h3>🎲 ${b.name}</h3>
+                <div class="bazaar-time-badge">🕒 ${b.time || "Open Live"}</div>
+                <div class="bazaar-countdown ${status.isOpen ? "open-count" : "closed-count"}">
+                  ${status.isOpen ? "⏳ Closes in: " : "🔒 Unlocks in: "}${status.countdownText}
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="status-badge ${status.isOpen ? "open" : "closed"}">${status.isOpen ? "OPEN" : "CLOSED"}</span>
+                <button class="btn-play-bazaar ${!status.isOpen ? "btn-locked" : ""}" data-id="${b.id}" style="margin-top:5px; display:block;">
+                  ${status.isOpen ? "PLAY NOW" : "LOCKED 🔒"}
+                </button>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      });
+
+      document.getElementById("bazaars-list-container").addEventListener("click", (e) => {
+        const btn = e.target.closest(".btn-play-bazaar");
+        if (btn) {
+          const bId = btn.getAttribute("data-id");
+          const bObj = AppState.bazaarsList.find(x => x.id === bId);
+          if (bObj) openArena(bObj);
+        }
+      });
+    }
+
+    // ==============================================================
+    // RESULTS CHART
+    // ==============================================================
+    const currentYearMonth = new Date().toISOString().slice(0, 7);
+    document.getElementById("chart-month-picker").value = currentYearMonth;
+
+    document.getElementById("btn-open-chart-modal").onclick = () => {
+      fetchMasterChart();
+      openModalOverlay("chart-modal");
+    };
+    document.getElementById("btn-close-chart").onclick = () => closeModalOverlay("chart-modal");
+    document.getElementById("chart-month-picker").onchange = fetchMasterChart;
+
+    async function fetchMasterChart() {
+      const yearMonth = document.getElementById("chart-month-picker").value;
+      const headerRow = document.getElementById("master-chart-header-row");
+      const tbody = document.getElementById("master-chart-body");
+
+      headerRow.innerHTML = `<th class="date-column">DATE</th>`;
+      AppState.bazaarsList.forEach(game => {
+        headerRow.innerHTML += `<th>${game.name.toUpperCase()}</th>`;
+      });
+
+      tbody.innerHTML = `<tr><td colspan="${AppState.bazaarsList.length + 1}" style="padding:16px; color:#94a3b8;">Loading declared results...</td></tr>`;
+
+      const snap = await get(ref(db, `monthly_results/${yearMonth}`));
+      const monthData = snap.exists() ? snap.val() : {};
+
+      const [y, m] = yearMonth.split("-").map(Number);
+      const daysInMonth = new Date(y, m, 0).getDate();
+
+      tbody.innerHTML = "";
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateKey = `${yearMonth}-${String(day).padStart(2, "0")}`;
+        const dayDisplay = `${String(day).padStart(2, "0")}/${String(m).padStart(2, "0")}`;
+
+        let rowHtml = `<tr><td class="date-column">${dayDisplay}</td>`;
+
+        AppState.bazaarsList.forEach(game => {
+          const gameResult = (monthData[game.id] && monthData[game.id][dateKey]) ? monthData[game.id][dateKey].jodi : null;
+          if (gameResult) {
+            rowHtml += `<td class="jodi-val highlight">${gameResult}</td>`;
+          } else {
+            rowHtml += `<td class="jodi-val" style="color:#334155;">---</td>`;
+          }
+        });
+
+        rowHtml += `</tr>`;
+        tbody.innerHTML += rowHtml;
+      }
+    }
+
+    // ==============================================================
+    // BETTING ARENA
+    // ==============================================================
+    function initBettingArena() {
+      const jodiGrid = document.getElementById("arena-view-jodi");
+      jodiGrid.innerHTML = "";
+      const numbers = [];
+      for (let i = 1; i <= 99; i++) numbers.push(String(i).padStart(2, "0"));
+      numbers.push("00");
+
+      numbers.forEach(num => {
+        const cell = document.createElement("div");
+        cell.className = "jodi-cell";
+        cell.id = `cell-jodi-${num}`;
+        cell.innerHTML = `<span class="cell-number">${num}</span><span class="cell-stake-badge" style="display:none;"></span>`;
+        cell.onclick = () => handleItemStakeClick("JODI", num, 90);
+        jodiGrid.appendChild(cell);
+      });
+
+      const anderGrid = document.getElementById("haruf-grid-ander");
+      const baharGrid = document.getElementById("haruf-grid-bahar");
+      anderGrid.innerHTML = "";
+      baharGrid.innerHTML = "";
+
+      for (let d = 0; d <= 9; d++) {
+        const cellA = document.createElement("div");
+        cellA.className = "haruf-cell";
+        cellA.id = `cell-haruf-A${d}`;
+        cellA.innerHTML = `<span class="haruf-digit">${d}</span><span class="cell-stake-badge" style="display:none;"></span>`;
+        cellA.onclick = () => handleItemStakeClick("HARUF", `A-${d}`, 9.5);
+        anderGrid.appendChild(cellA);
+
+        const cellB = document.createElement("div");
+        cellB.className = "haruf-cell";
+        cellB.id = `cell-haruf-B${d}`;
+        cellB.innerHTML = `<span class="haruf-digit">${d}</span><span class="cell-stake-badge" style="display:none;"></span>`;
+        cellB.onclick = () => handleItemStakeClick("HARUF", `B-${d}`, 9.5);
+        baharGrid.appendChild(cellB);
+      }
+
+      document.querySelectorAll(".btn-quick-add").forEach(btn => {
+        btn.onclick = () => {
+          const addVal = Number(btn.getAttribute("data-add"));
+          const input = document.getElementById("input-bet-stake");
+          input.value = (Number(input.value) || 0) + addVal;
+        };
+      });
+
+      document.querySelectorAll(".btn-mode-tab").forEach(tab => {
+        tab.onclick = () => {
+          document.querySelectorAll(".btn-mode-tab").forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          const mode = tab.getAttribute("data-mode");
+          AppState.currentArenaMode = mode;
+
+          document.getElementById("arena-view-jodi").style.display = mode === "JODI" ? "grid" : "none";
+          document.getElementById("arena-view-haruf").style.display = mode === "HARUF" ? "flex" : "none";
+          document.getElementById("arena-view-crossing").style.display = mode === "CROSSING" ? "block" : "none";
+        };
+      });
+
+      document.getElementById("btn-generate-crossing").onclick = generateCrossingJodis;
+      document.getElementById("btn-arena-clear-all").onclick = clearArenaSelections;
+      document.getElementById("btn-arena-submit-bids").onclick = submitBets;
+      document.getElementById("btn-close-jodi-modal").onclick = closeArenaModal;
+    }
+
+    function openArena(bazaar) {
+      if (!AppState.uid) {
+        showToast("Please login through App first!");
+        return;
+      }
+      AppState.activeBazaar = bazaar;
+      document.getElementById("arena-bazaar-title").innerText = bazaar.name;
+      clearArenaSelections();
+
+      const status = getBazaarStatus(bazaar.time);
+      const veil = document.getElementById("arena-closed-veil");
+      const confirmBtn = document.getElementById("btn-arena-submit-bids");
+      const topTimer = document.getElementById("arena-bazaar-timer");
+      const lockCountdown = document.getElementById("arena-lock-countdown");
+
+      if (!status.isOpen) {
+        veil.classList.add("active");
+        confirmBtn.classList.add("locked-btn");
+        topTimer.innerText = `Closed • Unlocks in: ${status.countdownText}`;
+        topTimer.style.color = "var(--danger-coral)";
+        lockCountdown.innerText = status.countdownText;
+      } else {
+        veil.classList.remove("active");
+        confirmBtn.classList.remove("locked-btn");
+        topTimer.innerText = `Open • Closes in: ${status.countdownText}`;
+        topTimer.style.color = "var(--neon-green)";
+      }
+
+      document.getElementById("jodi-arena-modal").classList.add("open");
+      history.pushState({ modal: "arena" }, "", "#arena");
+    }
+
+    function closeArenaModal() {
+      document.getElementById("jodi-arena-modal").classList.remove("open");
+      AppState.activeBazaar = null;
+    }
+
+    function handleItemStakeClick(type, itemKey, multiplier) {
+      if (AppState.activeBazaar && !getBazaarStatus(AppState.activeBazaar.time).isOpen) {
+        showToast("Market is LOCKED right now!");
+        return;
+      }
+
+      const stakeInput = Number(document.getElementById("input-bet-stake").value);
+      if (!stakeInput || stakeInput < 5) {
+        showToast("Enter minimum ₹5 stake!");
+        return;
+      }
+
+      const existingStake = AppState.stagedBets.get(itemKey)?.amount || 0;
+      const updatedStake = existingStake + stakeInput;
+      AppState.stagedBets.set(itemKey, { type, itemKey, amount: updatedStake, multiplier });
+
+      let domCell = null;
+      if (type === "JODI") domCell = document.getElementById(`cell-jodi-${itemKey}`);
+      else if (type === "HARUF") domCell = document.getElementById(`cell-haruf-${itemKey.replace("-", "")}`);
+
+      if (domCell) {
+        domCell.classList.add("has-stake");
+        const b = domCell.querySelector(".cell-stake-badge");
+        b.style.display = "block";
+        b.innerText = `₹${updatedStake}`;
+      }
+
+      recalculateAccuratePayout();
+    }
+
+    function generateCrossingJodis() {
+      if (AppState.activeBazaar && !getBazaarStatus(AppState.activeBazaar.time).isOpen) {
+        showToast("Market is LOCKED right now!");
+        return;
+      }
+
+      const raw = document.getElementById("input-crossing-digits").value.replace(/\D/g, "");
+      const stakeInput = Number(document.getElementById("input-bet-stake").value) || 10;
+      const incJoda = document.getElementById("chk-crossing-joda").checked;
+
+      if (raw.length < 2) {
+        showToast("Enter at least 2 digits for crossing!");
+        return;
+      }
+
+      const digits = Array.from(new Set(raw.split("")));
+      const generated = [];
+
+      for (let i = 0; i < digits.length; i++) {
+        for (let j = 0; j < digits.length; j++) {
+          if (!incJoda && i === j) continue;
+          generated.push(`${digits[i]}${digits[j]}`);
+        }
+      }
+
+      const box = document.getElementById("crossing-preview-box");
+      box.innerHTML = "";
+      generated.forEach(j => {
+        box.innerHTML += `<span class="tag-jodi">${j} (₹${stakeInput})</span>`;
+        AppState.stagedBets.set(j, { type: "JODI", itemKey: j, amount: stakeInput, multiplier: 90 });
+      });
+
+      document.getElementById("crossing-count-label").innerText = `Generated: ${generated.length} Jodis (₹${stakeInput * generated.length})`;
+      recalculateAccuratePayout();
+      showToast(`Added ${generated.length} Crossing Jodis!`);
+    }
+
+    function recalculateAccuratePayout() {
+      let totalCount = 0;
+      let totalStake = 0;
+      let maxPotentialWin = 0;
+
+      AppState.stagedBets.forEach(bet => {
+        if (bet.amount > 0) {
+          totalCount++;
+          totalStake += bet.amount;
+          const winForThis = bet.amount * bet.multiplier;
+          if (winForThis > maxPotentialWin) {
+            maxPotentialWin = winForThis;
+          }
+        }
+      });
+
+      document.getElementById("arena-count-display").innerText = `${totalCount} Items`;
+      document.getElementById("arena-stake-display").innerText = `₹${totalStake}`;
+      document.getElementById("arena-payout-display").innerText = `₹${maxPotentialWin}`;
+    }
+
+    function clearArenaSelections() {
+      AppState.stagedBets.forEach((bet, key) => {
+        let domCell = null;
+        if (bet.type === "JODI") domCell = document.getElementById(`cell-jodi-${key}`);
+        else if (bet.type === "HARUF") domCell = document.getElementById(`cell-haruf-${key.replace("-", "")}`);
+
+        if (domCell) {
+          domCell.classList.remove("has-stake");
+          const b = domCell.querySelector(".cell-stake-badge");
+          if (b) b.style.display = "none";
+        }
+      });
+      AppState.stagedBets.clear();
+      document.getElementById("crossing-preview-box").innerHTML = "";
+      document.getElementById("crossing-count-label").innerText = "Generated: 0 Jodis";
+      recalculateAccuratePayout();
+    }
+
+    async function submitBets() {
+      if (AppState.activeBazaar && !getBazaarStatus(AppState.activeBazaar.time).isOpen) {
+        showToast("Cannot place bet: Market is LOCKED!");
+        return;
+      }
+
+      let totalStake = 0;
+      const items = [];
+      AppState.stagedBets.forEach(b => {
+        if (b.amount > 0) {
+          totalStake += b.amount;
+          items.push({ key: b.itemKey, type: b.type, stake: b.amount, payout: b.amount * b.multiplier });
+        }
+      });
+
+      if (totalStake <= 0) { showToast("Select at least 1 number!"); return; }
+      if (AppState.wallet < totalStake) { showToast("Insufficient balance! Please deposit."); return; }
+
+      try {
+        const batchId = `BET-${Date.now().toString().slice(-6)}`;
+        const batchData = {
+          batchId: batchId,
+          bazaarId: AppState.activeBazaar.id,
+          bazaarName: AppState.activeBazaar.name,
+          userId: AppState.uid,
+          userPhone: AppState.phone,
+          totalStake: totalStake,
+          status: "PENDING",
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          items: items
+        };
+
+        await update(ref(db, `users/${AppState.uid}`), {
+          wallet: increment(-totalStake)
+        });
+
+        await push(ref(db, `user_bets/${AppState.uid}`), batchData);
+        await push(ref(db, `bets`), batchData);
+
+        clearArenaSelections();
+        showToast(`✅ Bet Placed Successfully! Deducted ₹${totalStake}`);
+      } catch (err) {
+        showToast("Error placing bet: " + err.message);
+      }
+    }
+
+    // ==============================================================
+    // DRILL-DOWN BET INSPECTOR
+    // ==============================================================
+    function listenToUserBatches(uid) {
+      onValue(ref(db, `user_bets/${uid}`), (snap) => {
+        const container = document.getElementById("bets-ledger-list");
+        if (!snap.exists()) {
+          container.innerHTML = `<p style="text-align:center; color:#64748b; padding:30px;">No bets recorded yet.</p>`;
+          return;
+        }
+
+        const batches = Object.values(snap.val()).reverse();
+        container.innerHTML = "";
+
+        batches.forEach(b => {
+          const card = document.createElement("div");
+          card.className = "history-batch-card";
+          card.innerHTML = `
+            <div>
+              <h4 style="color:#fff; font-size:13.5px;">🎲 ${b.bazaarName}</h4>
+              <div style="font-size:11px; color:#94a3b8; margin-top:2px;">
+                ${b.items ? b.items.length : 0} Numbers • ${b.date} ${b.time}
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:14px; font-weight:800; color:var(--accent-cyan); font-family:var(--font-numeric);">₹${b.totalStake}</div>
+              <span style="font-size:10px; font-weight:800; color:var(--neon-green);">${b.status} ➔</span>
+            </div>
+          `;
+          card.onclick = () => openBatchDrillDown(b);
+          container.appendChild(card);
+        });
+      });
+    }
+
+    function openBatchDrillDown(batch) {
+      document.getElementById("drill-game-name").innerText = batch.bazaarName;
+      document.getElementById("drill-meta-info").innerText = `${batch.batchId} • ${batch.date} ${batch.time}`;
+      document.getElementById("drill-total-stake").innerText = `₹${batch.totalStake}`;
+      document.getElementById("drill-total-payout").innerText = `₹${Math.max(...batch.items.map(x=>x.payout))}`;
+
+      const tbody = document.getElementById("drill-table");
+      tbody.innerHTML = `<tr style="color:var(--text-dim); border-bottom:1px solid #1e356a;"><th>NUMBER/HARUF</th><th>STAKE</th><th>PAYOUT</th></tr>`;
+
+      if (batch.items) {
+        batch.items.forEach(it => {
+          tbody.innerHTML += `
+            <tr style="border-bottom:1px solid #142854; color:#fff;">
+              <td style="padding:6px; font-weight:800; font-family:var(--font-numeric); color:var(--accent-cyan); font-size:13px;">${it.key}</td>
+              <td>₹${it.stake}</td>
+              <td style="color:var(--neon-green); font-weight:700;">₹${it.payout}</td>
+            </tr>
+          `;
+        });
+      }
+      openModalOverlay("bet-detail-modal");
+    }
+    document.getElementById("btn-close-drill").onclick = () => closeModalOverlay("bet-detail-modal");
+
+    // RULES & SUPPORT
+    document.getElementById("btn-open-rules-modal").onclick = () => openModalOverlay("rules-modal");
+    document.getElementById("btn-close-rules").onclick = () => closeModalOverlay("rules-modal");
+    document.getElementById("btn-close-rules-btn").onclick = () => closeModalOverlay("rules-modal");
+
+    // MULTI-APP SHARE
+    const getShareMessage = () => `🎰 Play Dream Digit Live Satta Matka & Casino Games!\n⚡ 90x Jodi, 9.5x Haruf & Crossing Betting.\n🎁 Refer Code: ${AppState.phone || "VIP"}\n📲 Download & Play Now: ${document.getElementById("referral-link-field").value}`;
+
+    document.getElementById("btn-share-wa").onclick = () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(getShareMessage())}`, "_blank");
+    document.getElementById("btn-share-tg").onclick = () => window.open(`https://t.me/share/url?url=${encodeURIComponent(document.getElementById("referral-link-field").value)}&text=${encodeURIComponent(getShareMessage())}`, "_blank");
+    document.getElementById("btn-share-ig").onclick = () => {
+      navigator.clipboard.writeText(getShareMessage());
+      showToast("Share promo copied! Opening Instagram...");
+      setTimeout(() => window.open("https://instagram.com", "_blank"), 500);
+    };
+
+    document.getElementById("btn-share-all").onclick = async () => {
+      const shareData = {
+        title: "DREAM DIGIT — Satta Matka & Casino",
+        text: getShareMessage(),
+        url: document.getElementById("referral-link-field").value
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {}
+      } else if (window.Android && window.Android.shareApp) {
+        window.Android.shareApp(getShareMessage());
+      } else {
+        navigator.clipboard.writeText(getShareMessage());
+        showToast("Link & promo copied! Share anywhere.");
+      }
+    };
+
+    document.getElementById("btn-copy-referral").onclick = () => {
+      navigator.clipboard.writeText(document.getElementById("referral-link-field").value);
+      showToast("Referral link copied!");
+    };
+
+    // LOGOUT & SUPPORT
+    document.getElementById("btn-profile-logout").onclick = () => {
+      localStorage.removeItem("dd_uid");
+      localStorage.removeItem("dd_phone");
+      AppState.uid = null;
+      AppState.phone = null;
+      AppState.wallet = 0.00;
+
+      if (window.Android && window.Android.logout) {
+        window.Android.logout();
+      }
+      showToast("Logged out successfully.");
+    };
+
+    document.getElementById("btn-open-support").onclick = () => {
+      if (window.Android && window.Android.openSupport) {
+        window.Android.openSupport();
+      } else {
+        window.open(`https://api.whatsapp.com/send?phone=919876543210&text=Hello%20DreamDigit%20Support`, "_blank");
+      }
+    };
+
+    // MODAL HELPERS
+    function openModalOverlay(modalId) {
+      document.getElementById(modalId).classList.add("open");
+      history.pushState({ modal: modalId }, "", `#${modalId}`);
+    }
+
+    function closeModalOverlay(modalId) {
+      document.getElementById(modalId).classList.remove("open");
+    }
+
+    document.querySelectorAll(".bottom-nav .nav-item").forEach(btn => {
+      btn.onclick = () => {
+        const target = btn.getAttribute("data-target");
+        switchTab(target);
+      };
+    });
+
+    document.getElementById("btn-header-deposit").onclick = () => {
+      refreshDepositUi();
+      openModalOverlay("deposit-modal");
+    };
+    document.getElementById("btn-open-deposit-modal").onclick = () => {
+      refreshDepositUi();
+      openModalOverlay("deposit-modal");
+    };
+    document.getElementById("btn-close-deposit").onclick = () => closeModalOverlay("deposit-modal");
+
+    document.getElementById("btn-open-withdraw-modal").onclick = () => openModalOverlay("withdraw-modal");
+    document.getElementById("btn-close-withdraw").onclick = () => closeModalOverlay("withdraw-modal");
+
+    // Bank Selection / Withdrawal
+    const btnOptUpi = document.getElementById("tab-opt-upi");
+    const btnOptBank = document.getElementById("tab-opt-bank");
+    const formUpi = document.getElementById("form-withdraw-upi");
+    const formBank = document.getElementById("form-withdraw-bank");
+
+    btnOptUpi.onclick = () => {
+      btnOptUpi.classList.add("active"); btnOptBank.classList.remove("active");
+      formUpi.style.display = "block"; formBank.style.display = "none";
+    };
+    btnOptBank.onclick = () => {
+      btnOptBank.classList.add("active"); btnOptUpi.classList.remove("active");
+      formUpi.style.display = "none"; formBank.style.display = "block";
+    };
+
+    document.getElementById("withdraw-bank-select").onchange = (e) => {
+      document.getElementById("other-bank-name-wrap").style.display = e.target.value === "OTHER" ? "block" : "none";
+    };
+
+    document.getElementById("btn-submit-cashout").onclick = async () => {
+      if (!AppState.uid) { showToast("Please login first!"); return; }
+      const amt = Number(document.getElementById("withdraw-amount-input").value);
+      if (amt < 100) { showToast("Minimum cashout is ₹100"); return; }
+      if (AppState.wallet < amt) { showToast("Insufficient wallet balance!"); return; }
+
+      let payoutDetails = {};
+      if (formUpi.style.display !== "none") {
+        const vpa = document.getElementById("withdraw-upi-vpa").value.trim();
+        if (!vpa.includes("@")) { showToast("Enter valid UPI ID!"); return; }
+        payoutDetails = { method: "UPI", upi: vpa };
+      } else {
+        let bank = document.getElementById("withdraw-bank-select").value;
+        if (bank === "OTHER") bank = document.getElementById("withdraw-custom-bank").value.trim();
+        const holder = document.getElementById("withdraw-acct-name").value.trim();
+        const a1 = document.getElementById("withdraw-acct-num1").value.trim();
+        const a2 = document.getElementById("withdraw-acct-num2").value.trim();
+        const ifsc = document.getElementById("withdraw-acct-ifsc").value.trim().toUpperCase();
+
+        if (!bank || !holder || !a1 || a1 !== a2 || ifsc.length !== 11) {
+          showToast("Complete all bank fields correctly!");
+          return;
+        }
+        payoutDetails = { method: "BANK", bank, name: holder, account: a1, ifsc };
+      }
+
+      try {
+        await update(ref(db, `users/${AppState.uid}`), { wallet: increment(-amt) });
+        await push(ref(db, "transactions"), {
+          userId: AppState.uid,
+          userPhone: AppState.phone,
+          type: "WITHDRAWAL",
+          amount: amt,
+          payout: payoutDetails,
+          status: "PENDING",
+          createdAt: new Date().toISOString()
+        });
+
+        closeModalOverlay("withdraw-modal");
+        showToast(`Withdrawal of ₹${amt} requested!`);
+      } catch (e) {
+        showToast("Failed to process request.");
+      }
+    };
+
+    document.getElementById("btn-open-results-chart").onclick = () => window.open(AppState.officialResultsUrl, "_blank");
+
+    // INIT
+    listenToDynamicBazaars();
+    initBettingArena();
+    refreshDepositUi();
+  </script>
+</body>
+</html>
